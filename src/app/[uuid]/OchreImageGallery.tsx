@@ -50,13 +50,12 @@ export default function OchreImageGallery(props: {
 
   const updateResultsPageState = (event) => {
     event.preventDefault();
-    setResultsPageState(event.target.value);
-    console.log('hello from updateResultsPageState');
+    setResultsPageState(parseInt(event.target.value));
   }
     
   const updateResultsPerPageState = (event) => {
     event.preventDefault();
-    setResultsPerPageState(event.target.value);
+    setResultsPerPageState(parseInt(event.target.value));
     setResultsPageState(1);
   }
 
@@ -76,7 +75,7 @@ export default function OchreImageGallery(props: {
       resultsPageElements.push((
         <span key={`results-page-elements-previous}`}>
           <button
-           value={resultsPerPageState - 1} 
+           value={resultsPageState - 1} 
            onClick={updateResultsPageState}
           >&lt;</button>
         </span>
@@ -102,7 +101,7 @@ export default function OchreImageGallery(props: {
       resultsPageElements.push((
         <span key={`results-page-elements-next}`}>
           <button
-           value={resultsPerPageState + 1} 
+           value={resultsPageState + 1} 
            onClick={updateResultsPageState}
           >&gt;</button>
         </span>
