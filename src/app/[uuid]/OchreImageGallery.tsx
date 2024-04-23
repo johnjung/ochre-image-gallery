@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import OchreImageGalleryThumbnail from "./OchreImageGalleryThumbnail";
 
@@ -17,7 +16,6 @@ export default function OchreImageGallery(props: {
   showLabelsInput: boolean,
   uuid: string 
 }) {
-
   const { 
     className, 
     resultsPageInitial,
@@ -29,6 +27,8 @@ export default function OchreImageGallery(props: {
     showLabelsInput,
     uuid 
   } = props;
+
+  const router = useRouter();
 
   const [resultsPageState, setResultsPageState] = useState(resultsPageInitial);
   const [resultsPerPageState, setResultsPerPageState] = useState(resultsPerPageInitial);
@@ -43,6 +43,10 @@ export default function OchreImageGallery(props: {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    router.push(`/${uuid}/?page=${resultsPageState}&per_page=${resultsPerPageState}`, { scroll: false });
+  }, [resultsPageState, resultsPerPageState]);
 
   const updateResultsPageState = (event) => {
     event.preventDefault();
