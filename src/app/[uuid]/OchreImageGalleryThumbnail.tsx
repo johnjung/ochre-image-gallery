@@ -26,18 +26,27 @@ export default function OchreImageGalleryThumbnail(props: { showLabels: boolean,
   const renderThumbnailAndLabel = () => {
     return (
       <>
-        <div className="ochre-image-gallery-thumbnail-image-wrapper">
-          <div>
-            {isLoading && <Image src={loadingSpinner} alt="loading" /> }
-            {data && <Image src={`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}&preview`} width={500} height={500} priority={true} alt={uuid} onLoad={updateLoading} />}
-          </div>
+        <div className="ochre-image-gallery-thumbnail-image-wrapper">  
+          {isLoading && (
+          <div className="w-8 h=8">
+              <Image src={loadingSpinner} alt="loading" />
+            </div>
+          )}
+          {data && (
+            <Image
+            src={`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}&preview`}
+            width={500}
+            height={500}
+            priority={true}
+            alt={uuid}
+            onLoad={updateLoading}
+            />
+          )}
         </div>
         {showLabels && data && <p>{data.ochre.resource.identification.label.content}</p>}
       </>
     );
   };
-
-  console.log(loadingSpinner);
 
   return (
     <div className="ochre-image-gallery-thumbnail">
@@ -45,4 +54,7 @@ export default function OchreImageGalleryThumbnail(props: { showLabels: boolean,
     </div>
   );
 }
-/* {isLoading && <LoadingSpinner />} */
+
+/* 
+            
+            */
