@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import LoadingSpinner from "@/components/loading-spinner";
+import loadingSpinner from "../../../public/loading-spinner.svg";
 
 export default function OchreImageGalleryThumbnail(props: { showLabels: boolean, uuid: string }) {
   const { showLabels, uuid } = props;
@@ -28,7 +28,7 @@ export default function OchreImageGalleryThumbnail(props: { showLabels: boolean,
       <>
         <div className="ochre-image-gallery-thumbnail-image-wrapper">
           <div>
-            {isLoading && <LoadingSpinner className="w-8 h-8 fill-black text-gray-200" />}
+            {isLoading && <Image src={loadingSpinner} alt="loading" /> }
             {data && <Image src={`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}&preview`} width={500} height={500} priority={true} alt={uuid} onLoad={updateLoading} />}
           </div>
         </div>
@@ -37,9 +37,12 @@ export default function OchreImageGalleryThumbnail(props: { showLabels: boolean,
     );
   };
 
+  console.log(loadingSpinner);
+
   return (
     <div className="ochre-image-gallery-thumbnail">
       {data ? (<a href={`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}`}>{ renderThumbnailAndLabel() }</a>) : renderThumbnailAndLabel()}
     </div>
   );
 }
+/* {isLoading && <LoadingSpinner />} */
