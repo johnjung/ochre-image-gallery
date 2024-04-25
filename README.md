@@ -64,5 +64,5 @@ reflected in the URL, even if the page is changed dynamically, without a reload.
 - An instructor browses the result set and selects 50 results per page.
 - The instructor cuts and pastes the URL, expecting their students to see
   interesting result 11.
-- Students click the link, taking them to a search result page with only
-  only 10 results. They should be able to see interesting result 11. 
+- Students click the link. They should see results 1-50, including interesting
+  result 11.  
