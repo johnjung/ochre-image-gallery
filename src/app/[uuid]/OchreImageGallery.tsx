@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import loadingSpinner from "../../../public/loading-spinner.svg";
 import OchreImageGalleryThumbnail from "./OchreImageGalleryThumbnail";
 
 export default function OchreImageGallery(props: { 
@@ -121,7 +123,7 @@ export default function OchreImageGallery(props: {
     
   if (isLoading) {
     return (
-      <p>Loading...</p>
+      <div className="text-center"><Image className="w-8 h-8 inline" src={loadingSpinner} width={32} height={32} alt="loading" /></div>
     );
   } else if (!data) { 
     return (

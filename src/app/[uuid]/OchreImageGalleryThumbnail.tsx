@@ -28,7 +28,7 @@ export default function OchreImageGalleryThumbnail(props: { showLabels: boolean,
       <>
         <div className="ochre-image-gallery-thumbnail-image-wrapper">  
           {isLoading && (
-          <div className="w-8 h=8">
+          <div className="w-8 h-8">
               <Image src={loadingSpinner} alt="loading" />
             </div>
           )}
