@@ -51,7 +51,7 @@ per page should be encoded as parameters (after the ?). It's common to see value
 as URL parameters, and it frees us up to be able to add new parameters for things like sorting
 or filtering at a later date. 
 
-After reviewing different approaches, URLs in the form /<uuid>?page=1&per_page=100 seem clearest. 
+After reviewing different approaches, URLs in the form /&lt;uuid&gt;?page=1&per_page=100 seem clearest. 
 
 ## Test Cases
 
