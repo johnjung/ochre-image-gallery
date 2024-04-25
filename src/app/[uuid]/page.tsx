@@ -2,8 +2,6 @@ import { redirect } from "next/navigation";
 import "./globals.css";
 import OchreImageGallery from "./OchreImageGallery.tsx";
 
-// need to type this...
-
 export default function Page({
   params, searchParams
 }) {
