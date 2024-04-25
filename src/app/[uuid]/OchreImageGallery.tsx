@@ -30,8 +30,8 @@ export default function OchreImageGallery(props: {
 
   const router = useRouter();
 
-  const [resultsPageState, setResultsPageState] = useState(resultsPageInitial);
-  const [resultsPerPageState, setResultsPerPageState] = useState(resultsPerPageInitial);
+  const [resultsPageState, setResultsPageState] = useState(parseInt(resultsPageInitial));
+  const [resultsPerPageState, setResultsPerPageState] = useState(parseInt(resultsPerPageInitial));
   const [data, setData] = useState({ochre: {tree: {items: {resource: []}}}});
   const [isLoading, setLoading] = useState(true);
    
@@ -97,7 +97,7 @@ export default function OchreImageGallery(props: {
         ));
       }
     }
-    if (resultsPerPageState < maxPage) {
+    if (resultsPageState < maxPage) {
       resultsPageElements.push((
         <span key={`results-page-elements-next}`}>
           <button
