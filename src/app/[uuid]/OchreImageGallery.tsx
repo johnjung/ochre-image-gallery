@@ -84,7 +84,7 @@ export default function OchreImageGallery(props: {
     for (let p = minPageLink; p <= maxPageLink; p++) {
       if (p == resultsPageState) {
         resultsPageElements.push((
-          <span key={`results-page-elements-${p-1}`}>{p}</span>
+          <span className="current" key={`results-page-elements-${p-1}`}>{p}</span>
         ));
       } else {
         resultsPageElements.push((
@@ -110,8 +110,12 @@ export default function OchreImageGallery(props: {
   }
   let resultsPerPageElements = [];
   if (resultsPerPageInput) {
-    resultsPerPageElements = resultsPerPageOptions.map((o, i) => {
-      return <span key={`pagination-number-of-results-${i}`}><button value={o} onClick={updateResultsPerPageState}>{o}</button></span>
+    resultsPerPageElements = resultsPerPageOptions.map((p, i) => {
+      if (p == resultsPerPageState) {
+        return <span className="current" key={`pagination-number-of-results-${i}`}>{p}</span>
+      } else {
+        return <span key={`pagination-number-of-results-${i}`}><button value={p} onClick={updateResultsPerPageState}>{p}</button></span>
+      }
     });
   };
     

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+span.current {
+  font-weight: bold;
+}
+
 body {
   margin: 0 auto;
   max-width: calc(992px - 2rem);
