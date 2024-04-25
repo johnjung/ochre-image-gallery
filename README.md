@@ -37,9 +37,10 @@ and next page are a dominant pattern. The number of results per page is not alwa
 controllable, especially on commercial sites. Currently, Amazon.com and Etsy do not allow
 web users to adjust the number of results per page. 
 
-My preference is for both a page change and a change in the number of results per page to
-result in a change to URL parameters, even if those changes are dynamically generated without
-a reload. This prioritizes the URL bar as a part of the UI, and it makes it possible for users
+When the number of results per page is user-controllable, my preference is for both a page
+change and a change in the number of results per page to result in a change to URL
+parameters, even if those changes are dynamically generated without a reload. This prioritizes
+the URL bar as a part of the UI, and it makes it possible for users
 to cut and paste URLs to save or share any view of the interface. Not all developers share 
 this approach, and there are high-profile websites that do not keep the URL up to date in
 this way.
