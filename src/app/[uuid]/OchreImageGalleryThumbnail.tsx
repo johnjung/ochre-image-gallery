@@ -28,15 +28,17 @@ export default function OchreImageGalleryThumbnail(props: { showLabels: boolean,
       <>
         <div className="ochre-image-gallery-thumbnail-image-wrapper">  
           {isLoading && (
-          <div className="w-8 h-8">
+            <div className="w-8 h-8">
               <Image src={loadingSpinner} alt="loading" />
             </div>
           )}
           {data && (
             <Image
+            className="fill"
             src={`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}&preview`}
-            width={500}
-            height={500}
+            width={541}
+            height={541}
+            sizes="(max-width: 575px) 100vw, 25vw"
             priority={true}
             alt={uuid}
             onLoad={updateLoading}
@@ -54,7 +56,3 @@ export default function OchreImageGalleryThumbnail(props: { showLabels: boolean,
     </div>
   );
 }
-
-/* 
-            
-            */
