@@ -7,36 +7,42 @@ import { useRouter, useSearchParams } from "next/navigation";
 import loadingSpinner from "../../../public/loading-spinner.svg";
 import OchreImageGalleryThumbnail from "./OchreImageGalleryThumbnail";
 
-export default function OchreImageGallery(props: { 
-  className: string,
-  resultsPageInitial: number,
-  resultsPageInput: boolean,
-  resultsPerPageInitial: number,
-  resultsPerPageInput: boolean,
-  resultsPerPageOptions: number[],
-  showLabels: boolean,
-  showLabelsInput: boolean,
-  uuid: string 
+export default function OchreImageGallery(props: {
+  className: string;
+  resultsPageInitial: number;
+  resultsPageInput: boolean;
+  resultsPerPageInitial: number;
+  resultsPerPageInput: boolean;
+  resultsPerPageOptions: number[];
+  showLabels: boolean;
+  showLabelsInput: boolean;
+  uuid: string;
 }) {
-  const { 
-    className, 
+  const {
+    className,
     resultsPageInitial,
     resultsPageInput,
     resultsPerPageInput,
     resultsPerPageOptions,
     resultsPerPageInitial,
-    showLabels, 
+    showLabels,
     showLabelsInput,
-    uuid 
+    uuid,
   } = props;
 
   const router = useRouter();
 
-  const [resultsPageState, setResultsPageState] = useState(parseInt(resultsPageInitial));
-  const [resultsPerPageState, setResultsPerPageState] = useState(parseInt(resultsPerPageInitial));
-  const [data, setData] = useState({ochre: {tree: {items: {resource: []}}}});
+  const [resultsPageState, setResultsPageState] = useState(
+    parseInt(resultsPageInitial),
+  );
+  const [resultsPerPageState, setResultsPerPageState] = useState(
+    parseInt(resultsPerPageInitial),
+  );
+  const [data, setData] = useState({
+    ochre: { tree: { items: { resource: [] } } },
+  });
   const [isLoading, setLoading] = useState(true);
-   
+
   useEffect(() => {
     fetch(`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}&format=json`)
       .then((response) => response.json())
@@ -47,19 +53,22 @@ export default function OchreImageGallery(props: {
   }, []);
 
   useEffect(() => {
-    router.push(`/${uuid}/?page=${resultsPageState}&per_page=${resultsPerPageState}`, { scroll: false });
+    router.push(
+      `/${uuid}/?page=${resultsPageState}&per_page=${resultsPerPageState}`,
+      { scroll: false },
+    );
   }, [resultsPageState, resultsPerPageState]);
 
   const updateResultsPageState = (event) => {
     event.preventDefault();
     setResultsPageState(parseInt(event.target.value));
-  }
-    
+  };
+
   const updateResultsPerPageState = (event) => {
     event.preventDefault();
     setResultsPerPageState(parseInt(event.target.value));
     setResultsPageState(1);
-  }
+  };
 
   const count = data.ochre.tree.items.resource.length;
   let resultsPageElements = [];
@@ -74,91 +83,104 @@ export default function OchreImageGallery(props: {
       maxPageLink = maxPage;
     }
     if (resultsPageState > 1) {
-      resultsPageElements.push((
+      resultsPageElements.push(
         <span key={`results-page-elements-previous}`}>
-          <button
-           value={resultsPageState - 1} 
-           onClick={updateResultsPageState}
-          >&lt;</button>
-        </span>
-      ));
+          <button value={resultsPageState - 1} onClick={updateResultsPageState}>
+            &lt;
+          </button>
+        </span>,
+      );
     }
     for (let p = minPageLink; p <= maxPageLink; p++) {
       if (p == resultsPageState) {
-        resultsPageElements.push((
-          <span className="current" key={`results-page-elements-${p-1}`}>{p}</span>
-        ));
+        resultsPageElements.push(
+          <span className="current" key={`results-page-elements-${p - 1}`}>
+            {p}
+          </span>,
+        );
       } else {
-        resultsPageElements.push((
-          <span key={`results-page-elements-${p-1}`}>
-            <button
-             value={p} 
-             onClick={updateResultsPageState}
-            >{p}</button>
-          </span>
-        ));
+        resultsPageElements.push(
+          <span key={`results-page-elements-${p - 1}`}>
+            <button value={p} onClick={updateResultsPageState}>
+              {p}
+            </button>
+          </span>,
+        );
       }
     }
     if (resultsPageState < maxPage) {
-      resultsPageElements.push((
+      resultsPageElements.push(
         <span key={`results-page-elements-next}`}>
-          <button
-           value={resultsPageState + 1} 
-           onClick={updateResultsPageState}
-          >&gt;</button>
-        </span>
-      ));
+          <button value={resultsPageState + 1} onClick={updateResultsPageState}>
+            &gt;
+          </button>
+        </span>,
+      );
     }
   }
   let resultsPerPageElements = [];
   if (resultsPerPageInput) {
     resultsPerPageElements = resultsPerPageOptions.map((p, i) => {
       if (p == resultsPerPageState) {
-        return <span className="current" key={`pagination-number-of-results-${i}`}>{p}</span>
+        return (
+          <span className="current" key={`pagination-number-of-results-${i}`}>
+            {p}
+          </span>
+        );
       } else {
-        return <span key={`pagination-number-of-results-${i}`}><button value={p} onClick={updateResultsPerPageState}>{p}</button></span>
+        return (
+          <span key={`pagination-number-of-results-${i}`}>
+            <button value={p} onClick={updateResultsPerPageState}>
+              {p}
+            </button>
+          </span>
+        );
       }
     });
-  };
-    
+  }
+
   if (isLoading) {
     return (
-      <div className="text-center"><Image className="w-8 h-8 inline" src={loadingSpinner} width={32} height={32} alt="loading" /></div>
+      <div className="text-center">
+        <Image
+          className="w-8 h-8 inline"
+          src={loadingSpinner}
+          width={32}
+          height={32}
+          alt="loading"
+        />
+      </div>
     );
-  } else if (!data) { 
-    return (
-      <p>Data error.</p>
-    );
+  } else if (!data) {
+    return <p>Data error.</p>;
   } else {
     const resource = data.ochre.tree.items.resource;
     const slice = resource.slice(
       (resultsPageState - 1) * resultsPerPageState,
-      resultsPageState * resultsPerPageState
+      resultsPageState * resultsPerPageState,
     );
     return (
       <div className={className}>
         <div className="ochre-image-gallery">
-          {slice.map(r => {
+          {slice.map((r) => {
             return (
-              <OchreImageGalleryThumbnail 
-               key={r.uuid} 
-               uuid={r.uuid} 
-               showLabels={showLabels} 
+              <OchreImageGalleryThumbnail
+                key={r.uuid}
+                uuid={r.uuid}
+                showLabels={showLabels}
               />
             );
           })}
         </div>
 
-        { resultsPageInput && (
-          <div className="ochre-pagination-links">
-            { resultsPageElements }
-          </div>
+        {resultsPageInput && (
+          <div className="ochre-pagination-links">{resultsPageElements}</div>
         )}
 
-        { resultsPerPageInput && (
+        {resultsPerPageInput && (
           <form className="ochre-pagination-links">
             <span>Results Per Page:</span>
-            { resultsPerPageElements }
+            {resultsPerPageElements}
           </form>
         )}
       </div>

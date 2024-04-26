@@ -5,7 +5,10 @@ import Image from "next/image";
 
 import loadingSpinner from "../../../public/loading-spinner.svg";
 
-export default function OchreImageGalleryThumbnail(props: { showLabels: boolean, uuid: string }) {
+export default function OchreImageGalleryThumbnail(props: {
+  showLabels: boolean;
+  uuid: string;
+}) {
   const { showLabels, uuid } = props;
 
   const [data, setData] = useState(null);
@@ -20,13 +23,13 @@ export default function OchreImageGalleryThumbnail(props: { showLabels: boolean,
       .then((response) => response.json())
       .then((data) => {
         setData(data);
-    })
+      });
   }, []);
 
   const renderThumbnailAndLabel = () => {
     return (
       <>
-        <div className="ochre-image-gallery-thumbnail-image-wrapper">  
+        <div className="ochre-image-gallery-thumbnail-image-wrapper">
           {isLoading && (
             <div className="w-8 h-8">
               <Image src={loadingSpinner} alt="loading" />
@@ -34,25 +37,33 @@ export default function OchreImageGalleryThumbnail(props: { showLabels: boolean,
           )}
           {data && (
             <Image
-            className="fill"
-            src={`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}&preview`}
-            width={541}
-            height={541}
-            sizes="(max-width: 575px) 100vw, 25vw"
-            priority={true}
-            alt={uuid}
-            onLoad={updateLoading}
+              className="fill"
+              src={`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}&preview`}
+              width={541}
+              height={541}
+              sizes="(max-width: 575px) 100vw, 25vw"
+              priority={true}
+              alt={uuid}
+              onLoad={updateLoading}
             />
           )}
         </div>
-        {showLabels && data && <p>{data.ochre.resource.identification.label.content}</p>}
+        {showLabels && data && (
+          <p>{data.ochre.resource.identification.label.content}</p>
+        )}
       </>
     );
   };
 
   return (
     <div className="ochre-image-gallery-thumbnail">
-      {data ? (<a href={`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}`}>{ renderThumbnailAndLabel() }</a>) : renderThumbnailAndLabel()}
+      {data ? (
+        <a href={`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}`}>
+          {renderThumbnailAndLabel()}
+        </a>
+      ) : (
+        renderThumbnailAndLabel()
+      )}
     </div>
   );
 }
