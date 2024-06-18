@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import loadingSpinner from "../../../public/loading-spinner.svg";
+import loadingSpinner from "../../../../public/loading-spinner.svg";
 import OchreImageGalleryThumbnail from "./OchreImageGalleryThumbnail";
 
 export default function OchreImageGallery(props: {
@@ -54,7 +54,7 @@ export default function OchreImageGallery(props: {
 
   useEffect(() => {
     router.push(
-      `/${uuid}/?page=${resultsPageState}&per_page=${resultsPerPageState}`,
+      `/gallery/${uuid}/?page=${resultsPageState}&per_page=${resultsPerPageState}`,
       { scroll: false },
     );
   }, [resultsPageState, resultsPerPageState]);

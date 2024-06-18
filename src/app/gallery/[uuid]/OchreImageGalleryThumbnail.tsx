@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import loadingSpinner from "../../../public/loading-spinner.svg";
+import loadingSpinner from "../../../../public/loading-spinner.svg";
 
 export default function OchreImageGalleryThumbnail(props: {
   showLabels: boolean;
