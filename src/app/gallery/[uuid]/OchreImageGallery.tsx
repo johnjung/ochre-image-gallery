@@ -11,7 +11,7 @@ export default function OchreImageGallery(props: {
   className: string;
   resultsPageInitial: string;
   resultsPageInput: boolean;
-  resultsPerPageInitial: number;
+  resultsPerPageInitial: string;
   resultsPerPageInput: boolean;
   resultsPerPageOptions: number[];
   showLabels: boolean;
