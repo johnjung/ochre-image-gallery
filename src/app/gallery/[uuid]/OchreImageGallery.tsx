@@ -122,7 +122,7 @@ export default function OchreImageGallery(props: {
       );
     }
   }
-  let resultsPerPageElements: Element[] = [];
+  let resultsPerPageElements: React.JSX.Element[] = [];
   if (resultsPerPageInput) {
     resultsPerPageElements = resultsPerPageOptions.map((p, i) => {
       if (p == resultsPerPageState) {
