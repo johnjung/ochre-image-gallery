@@ -61,14 +61,14 @@ export default function OchreImageGallery(props: {
 
   const updateResultsPageState = (event: MouseEvent) => {
     event.preventDefault();
-    if (event.target) {
+    if ('value' in event.target) {
       setResultsPageState(parseInt(event.target.value));
     }
   };
 
   const updateResultsPerPageState = (event: MouseEvent) => {
     event.preventDefault();
-    if (event.target) {
+    if ('value' in event.target) {
       setResultsPerPageState(parseInt(event.target.value));
       setResultsPageState(1);
     }
