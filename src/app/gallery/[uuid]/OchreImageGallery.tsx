@@ -122,7 +122,7 @@ export default function OchreImageGallery(props: {
       );
     }
   }
-  let resultsPerPageElements = [];
+  let resultsPerPageElements: string[] = [];
   if (resultsPerPageInput) {
     resultsPerPageElements = resultsPerPageOptions.map((p, i) => {
       if (p == resultsPerPageState) {
