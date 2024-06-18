@@ -59,14 +59,14 @@ export default function OchreImageGallery(props: {
     );
   }, [resultsPageState, resultsPerPageState]);
 
-  const updateResultsPageState = (event: MouseEvent) => {
+  const updateResultsPageState: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
     if (event.target && 'value' in event.target) {
       setResultsPageState(parseInt(event.target.value as string));
     }
   };
 
-  const updateResultsPerPageState = (event: MouseEvent) => {
+  const updateResultsPerPageState: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
     if (event.target && 'value' in event.target) {
       setResultsPerPageState(parseInt(event.target.value as string));
