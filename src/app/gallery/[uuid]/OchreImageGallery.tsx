@@ -61,13 +61,17 @@ export default function OchreImageGallery(props: {
 
   const updateResultsPageState = (event: MouseEvent) => {
     event.preventDefault();
-    setResultsPageState(parseInt(event.target.value));
+    if (event.target) {
+      setResultsPageState(parseInt(event.target.value));
+    }
   };
 
   const updateResultsPerPageState = (event: MouseEvent) => {
     event.preventDefault();
-    setResultsPerPageState(parseInt(event.target.value));
-    setResultsPageState(1);
+    if (event.target) {
+      setResultsPerPageState(parseInt(event.target.value));
+      setResultsPageState(1);
+    }
   };
 
   const count = data.ochre.tree.items.resource.length;
