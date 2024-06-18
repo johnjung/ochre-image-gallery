@@ -4,7 +4,7 @@ This component produces a display of multiple images which can be styled to
 appear as block level search results or as a grid. Test at URLs like:
 
 ```
-http://localhost:3000/9c4da06b-f15e-40af-a747-0933eaf3587e
+http://localhost:3000/gallery/9c4da06b-f15e-40af-a747-0933eaf3587e
 ```
 
 ## Usage
