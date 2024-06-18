@@ -9,7 +9,7 @@ import OchreImageGalleryThumbnail from "./OchreImageGalleryThumbnail";
 
 export default function OchreImageGallery(props: {
   className: string;
-  resultsPageInitial: number;
+  resultsPageInitial: string;
   resultsPageInput: boolean;
   resultsPerPageInitial: number;
   resultsPerPageInput: boolean;
