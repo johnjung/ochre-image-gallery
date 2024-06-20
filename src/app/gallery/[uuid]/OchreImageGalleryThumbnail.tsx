@@ -49,7 +49,7 @@ export default function OchreImageGalleryThumbnail(props: {
           )}
         </div>
         {showLabels && data && (
-          <p>{data.ochre.resource.identification.label.content}</p>
+          <p>{data['ochre']['resource']['identification']['label']['content']}</p>
         )}
       </>
     );

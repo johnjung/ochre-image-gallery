@@ -43,6 +43,9 @@ export default function OchreImageGallery(props: {
   });
   const [isLoading, setLoading] = useState(true);
 
+  interface OrchreData {
+  }
+
   useEffect(() => {
     fetch(`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}&format=json`)
       .then((response) => response.json())
@@ -169,8 +172,8 @@ export default function OchreImageGallery(props: {
           {slice.map((r) => {
             return (
               <OchreImageGalleryThumbnail
-                key={r.uuid}
-                uuid={r.uuid}
+                key={r['uuid']}
+                uuid={r['uuid']}
                 showLabels={showLabels}
               />
             );
