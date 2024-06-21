@@ -32,7 +32,6 @@ export default function OchreImageGalleryThumbnail(props: {
           <img
             className="thumbnail"
             src={`https://ochre.lib.uchicago.edu/ochre?uuid=${uuid}&preview`}
-            priority={true}
             alt={title}
             onLoad={() => updateLoading()}
           />
