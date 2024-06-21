@@ -175,6 +175,7 @@ export default function OchreImageGallery(props: {
                 key={r['uuid']}
                 uuid={r['uuid']}
                 showLabels={showLabels}
+                title={r['identification']['label']['content']}
               />
             );
           })}

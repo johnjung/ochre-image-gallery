@@ -35,10 +35,23 @@ body {
   width: 100%;
 }
 
+.imagegallery div.ochre-image-gallery-thumbnail-image-wrapper.loading img.thumbnail {
+  display: none;
+}
 .imagegallery div.ochre-image-gallery-thumbnail-image-wrapper img {
   height: 100%;
   object-fit: contain;
   width: 100%;
+}
+.imagegallery div.ochre-image-gallery-thumbnail-image-wrapper.loading img.spinner {
+  height: 32px;
+  display: block;
+  margin: 0 auto;
+  object-fit: default;
+  width: 32px;
+}
+.imagegallery div.ochre-image-gallery-thumbnail-image-wrapper img.spinner {
+  display: none;
 }
 
 .imagegallery div.ochre-image-gallery-thumbnail p {
